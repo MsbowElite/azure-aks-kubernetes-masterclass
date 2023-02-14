@@ -69,7 +69,9 @@ kubectl apply -f kube-manifests/01-MySQL-externalName-Service.yml
 kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h <AZURE-MYSQ-DB-HOSTNAME> -u <USER_NAME> -p<PASSWORD>
 
 # Replace Host Name of Azure MySQL Database and Username and Password
-kubectl run -it --rm --image=mysql:5.7.22 --restart=Never mysql-client -- mysql -h akswebappdb.mysql.database.azure.com -u dbadmin@akswebappdb -pRedhat1449
+kubectl run -it --rm --image=mysql:5.7.40 --restart=Never mysql-client -- mysql -h akswebappdbbow.mysql.database.azure.com -u dbadmin -pRedhat1449
+
+kubectl exec -it usermgmt-webapp-57599c64f7-gsnpp -n kube-system -c etcd-auxiliary-0 -- ping -c 1 kswebappdbbow.mysql.database.azure.com ; echo $?
 
 mysql> show schemas;
 mysql> create database webappdb;

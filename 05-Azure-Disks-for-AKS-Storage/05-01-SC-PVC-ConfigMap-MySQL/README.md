@@ -82,7 +82,7 @@ kubectl delete -f kube-manifests/
 ## Step-06: Delete PV exclusively - It exists due to retain policy
 ```
 # List PV
-kubect get pv
+kubectl get pv
 
 # Delete PV exclusively
 kubectl get pv
