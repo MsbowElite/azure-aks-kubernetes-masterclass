@@ -9,7 +9,9 @@
 - Associate that Public IP to **Ingress Controller** during installation.
 - We are going to create a namespace `ingress-basic` for Ingress Controller where all ingress controller related things will be placed. 
 - In future, we install **cert-manager** for SSL certificates also in same namespace. 
-- **Caution Note:** This namespace is for Ingress controller stuff, ingress resource we can create in any other namespaces and not an issue.  Only condition is create ingress resource and ingress pointed application in same namespace (Example: App1 and Ingress resource of App1 should be in same namespace)
+- **Caution Note:** This namespace is for Ingress controller stuff, ingress resource we can create in any other namespaces and not an issue.  
+Only condition is create ingress resource and ingress pointed application in same namespace 
+(Example: App1 and Ingress resource of App1 should be in same namespace)
 - Create / Review Ingress Manifest
 - Deploy a simple Nginx App1 with Ingress manifest and test it
 - Clean-Up or delete application after testing
@@ -23,12 +25,12 @@ az aks show --resource-group aks-rg1 --name aksdemo1 --query nodeResourceGroup -
 az network public-ip create --resource-group <REPLACE-OUTPUT-RG-FROM-PREVIOUS-COMMAND> --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
 
 # REPLACE - Create Public IP: Replace Resource Group value
-az network public-ip create --resource-group MC_aks-rg1_aksdemo1_centralus --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
+az network public-ip create --resource-group MC_aks-rg1_aksdemo1_centralindia --name myAKSPublicIPForIngress --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
 ```
 - Make a note of Static IP which we will use in next step when installing Ingress Controller
 ```t
 # Make a note of Public IP created for Ingress
-52.154.156.139
+20.235.70.167
 ```
 
 ## Step-03: Install Ingress Controller
@@ -62,7 +64,9 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --set controller.nodeSelector."kubernetes\.io/os"=linux \
     --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux \
     --set controller.service.externalTrafficPolicy=Local \
-    --set controller.service.loadBalancerIP="52.154.156.139"     
+    --set controller.service.loadBalancerIP="20.235.70.167"
+
+    helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-basic --set controller.replicaCount=2 --set controller.nodeSelector."kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux --set controller.service.externalTrafficPolicy=Local --set controller.service.loadBalancerIP="20.235.70.167"   
 
 
 # List Services with labels

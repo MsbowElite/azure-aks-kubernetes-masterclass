@@ -23,6 +23,8 @@ helm install \
   --version v1.8.2 \
   --set installCRDs=true
 
+  helm install cert-manager jetstack/cert-manager --namespace ingress-basic --version v1.8.2 --set installCRDs=true
+
 ## SAMPLE OUTPUT
 Kalyans-MacBook-Pro:12-ExternalDNS-for-AzureDNS-on-AKS kdaida$ helm install \
 >   cert-manager jetstack/cert-manager \

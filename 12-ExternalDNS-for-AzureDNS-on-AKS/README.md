@@ -145,6 +145,7 @@ kubectl create secret generic azure-config-file --from-file=azure.json
 # List Secrets
 kubectl get secrets
 
+
 # Deploy ExternalDNS 
 cd kube-manifests/01-ExteranlDNS
 kubectl apply -f external-dns.yml
