@@ -82,7 +82,7 @@ https://github.com/stacksimplify/azure-devops-github-acr-aks-app1
 - Advanced: Leave to defaults
   - Version Control: Git
   - Work Item Process: Basic
-
+   
 ## Step-07: Create Basic Build Pipeline
 - Create Folder -> App1-Pipelines
 - Go to Pipelines -> Create New Pipeline

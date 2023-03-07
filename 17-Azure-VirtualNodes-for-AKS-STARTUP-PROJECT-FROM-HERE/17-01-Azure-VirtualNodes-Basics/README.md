@@ -55,6 +55,8 @@ kubectl get pods -n kube-system
 
 # Verify logs of ACI Connector Linux
 kubectl logs -f $(kubectl get po -n kube-system | egrep -o 'aci-connector-linux-[A-Za-z0-9-]+') -n kube-system
+windows:
+kubectl logs -f $(kubectl get po -n kube-system | select-string 'aci-connector-linux-[A-Za-z0-9-]+') -n kube-system
 ```
 - We should see `virtual-node-aci-linux` node also listed for `kubectl get nodes` output
 - **Sample Output**
@@ -80,6 +82,9 @@ Kalyans-MacBook-Pro:azure-aks-kubernetes-masterclass kdaida$
       - key: azure.com/aci
         effect: NoSchedule
 ```
+
+## Step-04-01:
+Check if your subsctiption have resource providers: Microsoft.ContainerInstance, Registered.
 
 ## Step-05: Deploy Application Manifests
 ```
